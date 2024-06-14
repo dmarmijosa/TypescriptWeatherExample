@@ -7,23 +7,37 @@ import drizzle from '../images/drizzle.png';
 import thunderstroms from '../images/thunderstroms.png';
 import snow from '../images/snow.png';
 import foggy from '../images/foggy.png';
-
-// TODO: Create the interface of Weather Response
+import empty from '../images/empty.png';
 
 export interface WeatherResponse {
-
+    weather: [Weather];
+    base: string;
+    main: Main;
+    visibility: number;
+    wind: Wind;
+    name: string;
 }
 
 interface Wind {
-
+    speed: number;
+    deg: number;
+    gust: number;
 }
 
 interface Weather {
-
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
 }
 
 interface Main {
-
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
 }
 
 export const WeatherIcon = {
@@ -45,6 +59,7 @@ export const WeatherIcon = {
     "13n": snow,
     "50d": foggy,
     "50n": foggy,
+    "00": empty
 } as const;
 
 export const DayOfWeek = [
@@ -55,6 +70,6 @@ export const DayOfWeek = [
     "Friday",
     "Saturday",
     "Sunday"
-];
+] as const;
 
 export type WeatherIcontype = keyof typeof WeatherIcon;
